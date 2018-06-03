@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:9.6-alpine
+    container_name: local_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: 'root'
+      POSTGRES_PASSWORD: 'root'
+
+    volumes:
+      - ./pg-datavolume/data:/var/lib/postgresql/data
+      - ./pg-backupvolume/:/pg_backups
+    ports:
+      - "5432:5432"
+
+volumes:
+  pg-datavolume:
+  pg-backupvolume:
